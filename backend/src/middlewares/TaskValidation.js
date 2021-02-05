@@ -23,11 +23,21 @@ const TaskValidation = async (req, res, next) =>{
         //não permitir uma tarefa na mesma data e hora
         let exists;
 
+        if(req.params.id){
+            exists = await TaskModel.
+        findOne({
+            '_id': {'$ne': req.params.id},
+            'when': {'$eq': new Date(when)},
+            'macaddress': {'$in': macaddress}
+        });
+        }else{
+
         exists = await TaskModel.
         findOne({
             'when': {'$eq': new Date(when)},
             'macaddress': {'$in': macaddress}
         });
+        }
 
  //verificar se a tarefa existe
  if(exists){
