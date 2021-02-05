@@ -1,9 +1,9 @@
 const express = require('express');
 const server = express();
+server.use(express.json());
 
-server.get('/teste', (req, res) => {
-    res.send('mudei a API, mudei');
-});
+const TaskRoutes = require('./routes/TaskRoutes');
+server.use('/task', TaskRoutes);
 
 
 server.listen(3000, () =>{
