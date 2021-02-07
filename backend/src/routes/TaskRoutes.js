@@ -34,4 +34,7 @@ router.get('/filter/week', MacaddressValidation, TaskController.week);
 //exibir tarefas do mes
 router.get('/filter/month', MacaddressValidation, TaskController.month);
 
+//exibir tarefas do ano
+router.get('/filter/year', MacaddressValidation, TaskController.year);
+
 module.exports = router;

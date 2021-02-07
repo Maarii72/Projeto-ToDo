@@ -5,7 +5,9 @@ const {
     startOfWeek, 
     endOfWeek,
     startOfMonth,
-    endOfMonth
+    endOfMonth,
+    startOfYear,
+    endOfYear
 } = require('date-fns');
 
 const current = new Date();
@@ -147,6 +149,22 @@ async month(req, res){
     .find({'macaddress': {'$in': req.body.macaddress},
     //data seja maior ou igual ao inicio da semana e final da semana 
     'when': {'$gte': startOfMonth(current), '$lt': endOfMonth(current)}
+    })
+    .sort('when')
+    .then(response =>{
+        return res.status(200).json(response);
+    })
+    .catch(error => {
+        return res.status(500).json(error);
+    });
+}
+
+//filtrar tarefa anual
+async year(req, res){
+    await TaskModel
+    .find({'macaddress': {'$in': req.body.macaddress},
+    //data seja maior ou igual ao inicio do ano e final do ano 
+    'when': {'$gte': startOfYear(current), '$lt': endOfYear(current)}
     })
     .sort('when')
     .then(response =>{
