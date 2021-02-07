@@ -28,4 +28,7 @@ router.get('/filter/late', MacaddressValidation, TaskController.late);
 //exibir tarefas do dia
 router.get('/filter/today', MacaddressValidation, TaskController.today);
 
+//exibir tarefas da semana
+router.get('/filter/week', MacaddressValidation, TaskController.week);
+
 module.exports = router;
