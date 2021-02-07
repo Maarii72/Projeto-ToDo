@@ -1,5 +1,12 @@
 const TaskModel = require('../model/TaskModel');
-const {startOfDay, endOfDay, startOfWeek, endOfWeek} = require('date-fns');
+const {
+    startOfDay, 
+    endOfDay, 
+    startOfWeek, 
+    endOfWeek,
+    startOfMonth,
+    endOfMonth
+} = require('date-fns');
 
 const current = new Date();
 
@@ -118,12 +125,28 @@ async today(req, res){
     });
 }
 
-//filtar tarefa semanal
+//filtrar tarefa semanal
 async week(req, res){
     await TaskModel
     .find({'macaddress': {'$in': req.body.macaddress},
     //data seja maior ou igual ao inicio da semana e final da semana 
     'when': {'$gte': startOfWeek(current), '$lt': endOfWeek(current)}
+    })
+    .sort('when')
+    .then(response =>{
+        return res.status(200).json(response);
+    })
+    .catch(error => {
+        return res.status(500).json(error);
+    });
+}
+
+//filtrar tarefa mensal
+async month(req, res){
+    await TaskModel
+    .find({'macaddress': {'$in': req.body.macaddress},
+    //data seja maior ou igual ao inicio da semana e final da semana 
+    'when': {'$gte': startOfMonth(current), '$lt': endOfMonth(current)}
     })
     .sort('when')
     .then(response =>{
