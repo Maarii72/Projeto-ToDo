@@ -41,7 +41,7 @@ async update(req, res){
 //rota para listar todas as tarefas
 async all(req, res){
     //listar filtrando pelo macaddress
-    await TaskModel.find({macaddress: {'$in': req.body.macaddress}})
+    await TaskModel.find({macaddress: {'$in': req.params.macaddress}})
     //organizar por data e hora
     .sort('when')
     .then(response =>{
@@ -99,7 +99,7 @@ async late(req, res){
     .find({
         //data menor ou igual a current
         'when': {'$lt': current},
-        'macaddress': {'$in': req.body.macaddress}
+        'macaddress': {'$in': req.params.macaddress}
     })
     //organizar tarefas por data e hora
     .sort('when')
@@ -114,7 +114,7 @@ async late(req, res){
 //filtrar tarefa do dia
 async today(req, res){
     await TaskModel
-    .find({'macaddress': {'$in': req.body.macaddress},
+    .find({'macaddress': {'$in': req.params.macaddress},
     //data sej maior ou igual ao inicio do dia corrente 
     'when': {'$gte': startOfDay(current), '$lt': endOfDay(current)}
     })
@@ -130,7 +130,7 @@ async today(req, res){
 //filtrar tarefa semanal
 async week(req, res){
     await TaskModel
-    .find({'macaddress': {'$in': req.body.macaddress},
+    .find({'macaddress': {'$in': req.params.macaddress},
     //data seja maior ou igual ao inicio da semana e final da semana 
     'when': {'$gte': startOfWeek(current), '$lt': endOfWeek(current)}
     })
@@ -146,7 +146,7 @@ async week(req, res){
 //filtrar tarefa mensal
 async month(req, res){
     await TaskModel
-    .find({'macaddress': {'$in': req.body.macaddress},
+    .find({'macaddress': {'$in': req.params.macaddress},
     //data seja maior ou igual ao inicio da semana e final da semana 
     'when': {'$gte': startOfMonth(current), '$lt': endOfMonth(current)}
     })
@@ -162,7 +162,7 @@ async month(req, res){
 //filtrar tarefa anual
 async year(req, res){
     await TaskModel
-    .find({'macaddress': {'$in': req.body.macaddress},
+    .find({'macaddress': {'$in': req.params.macaddress},
     //data seja maior ou igual ao inicio do ano e final do ano 
     'when': {'$gte': startOfYear(current), '$lt': endOfYear(current)}
     })
