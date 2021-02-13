@@ -13,7 +13,7 @@ import FilterCard from '../../components/FilterCard';
 import TaskCard from '../../components/TaskCard';
 
 function Home() {
-  const [filterActived, setFilterActived] = useState('today');
+  const [filterActived, setFilterActived] = useState('all');
   const [tasks, setTasks] = useState([]);
 
   //função carregar do bd as tarefas
@@ -67,7 +67,7 @@ function Home() {
     <S.Content>
       {
         tasks.map( t => (
-      <TaskCard/>
+      <TaskCard type={t.type} title={t.title} when={t.when}/>
         ))
       }
     </S.Content>
