@@ -1,6 +1,10 @@
 // useState recurso que armazena estados
-import React, {useState} from 'react';
+//useEffect é disparado toda vez que a pag carrega
+import React, {useState, useEffect} from 'react';
 import * as S from './styles';
+
+//conexão com bd
+import api from '../../services/api';
 
 //NOSSOS COMPONENTES
 import Header from '../../components/Header';
@@ -10,6 +14,23 @@ import TaskCard from '../../components/TaskCard';
 
 function Home() {
   const [filterActived, setFilterActived] = useState('today');
+  const [tasks, setTasks] = useState([]);
+
+  //função carregar do bd as tarefas
+ async function loadTasks(){
+  await api.get(`/task/filter/${filterActived}/11:11:11:11:11:11`)
+  .then(response =>{
+    setTasks(response.data)
+    console.log(response.data)
+  })
+
+ }
+
+ //useEffect
+ useEffect(() =>{
+  loadTasks();
+ }, [filterActived])
+
   return (
   <S.Container>
     <Header/>
@@ -44,16 +65,11 @@ function Home() {
     </S.Title>
 
     <S.Content>
+      {
+        tasks.map( t => (
       <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
+        ))
+      }
     </S.Content>
     
     <Footer/>
