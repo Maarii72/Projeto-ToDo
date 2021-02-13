@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // ficar um dentro do outro display flex(caixa)
 export const Container = styled.div`
-width: 200px;
+width: 225px;
 height: 200px;
 box-shadow: -3px 1px 13px -2px rgba(0,0,0,0.73);
 border-radius: 10px;
