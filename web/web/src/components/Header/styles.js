@@ -28,12 +28,22 @@ display: flex;
 align-items: center;
 justify-content: flex-end;
 
-a{
+//botão de notificação
+button{
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline:none;
+    }
+
+
+a, button{
     color:#FFF;
     font-weight: bold;
     text-decoration: none;
     margin: 0 10px;
 
+    
     /* mouse passa por cima e muda cor*/
     &:hover{
         color:#000000; 
@@ -60,8 +70,8 @@ a{
     &:hover{
        opacity: 0.5; 
     }
-}
 
+}
 .dividir::after{
     content: "|";
     margin: 0 10px;

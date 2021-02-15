@@ -8,6 +8,7 @@ padding: 10px;
 //mouse mãozinha
 cursor: pointer;
 
+
 border-radius: 5px;
 
 display: flex;//por padrão um do lado do outro
