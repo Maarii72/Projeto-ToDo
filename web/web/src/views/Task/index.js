@@ -12,6 +12,9 @@ import Footer from '../../components/Footer';
 //icones
 import TypeIcons from '../../utils/typelcons';
 
+import iconCalendar from '../../assets/calendar.png';
+import iconClock from '../../assets/clock.png';
+
 function Task() {
     const [lateCount, setLateCount] = useState();
     const [type, setType] = useState();
@@ -58,11 +61,13 @@ async function lateVerify(){
         <S.Input>
           <span>Data</span>
           <input type="date" placeholder="Título da Tarefa..."></input>
+          <img src={iconCalendar} alt="calendário"/>
         </S.Input>
 
         <S.Input>
           <span>Hora</span>
           <input type="time" placeholder="Título da Tarefa..."></input>
+          <img src={iconClock} alt="Relógio"/>
         </S.Input>
 
         <S.Options>
@@ -70,7 +75,12 @@ async function lateVerify(){
             <input type="checkbox"/>
             <span>CONCLUÍDO</span>
           </div>
+          <button type="button">EXCLUIR</button>
         </S.Options>
+
+        <S.Save>
+          <button type="button">SALVAR</button>
+        </S.Save>
 
     </S.Form>
     
