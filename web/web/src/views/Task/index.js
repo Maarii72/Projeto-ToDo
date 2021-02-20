@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // useState recurso que armazena estados
 //useEffect é disparado toda vez que a pag carrega
 import React, {useState, useEffect} from 'react';
@@ -43,8 +44,10 @@ async function lateVerify(){
        type,
        title,
        description,
-       when:`${date}T${hour}.000`
-     })
+       when:`${date}T${hour}:00.000`
+     }).then(() =>
+       alert('TAREFA CADASTRADA COM SUCESSO!')
+     )
    }
  
  //useEffect
@@ -82,7 +85,7 @@ async function lateVerify(){
         <S.Input>
           <span>Data</span>
           <input type="date" placeholder="Título da Tarefa..."></input>
-          <img src={iconCalendar} alt="calendário"
+          <img src={iconCalendar} alt="Calendário"
           onChange={e => setDate(e.target.value)} value={date}/>
         </S.Input>
 
@@ -102,7 +105,7 @@ async function lateVerify(){
         </S.Options>
 
         <S.Save>
-          <button type="button">SALVAR</button>
+          <button type="button" onClick={Save}>SALVAR</button>
         </S.Save>
 
     </S.Form>
